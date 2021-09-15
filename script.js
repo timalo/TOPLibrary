@@ -10,7 +10,11 @@ function Book(title, author, pages, isRead){
     }
 }
 
-function addBookToLibrary() {
-    
+function addBookToLibrary(book) {
+    myLibrary.push(book);
+}
+
+function NewBookPrompt() {
+
 }
 
