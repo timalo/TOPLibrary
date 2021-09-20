@@ -3,7 +3,6 @@
     <head>
         <title>Library</title>
         <link rel="stylesheet" href="styles.css">
-        <script src="script.js"></script>
     </head>
     <body>
         <h1>Library project somethingsomething</h1>
@@ -17,4 +16,27 @@
             </div>
         </div>
     </body>
+
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <form>
+              <label for="title">Book Title:</label><br>
+              <input type="text" id="title" name="title"><br>
+              <label for="author">Author:</label><br>
+              <input type="text" id="author" name="author"><br>
+              <label for="pages">Page number:</label><br>
+              <input type="number" id="pages" name="pages"><br>
+              <p>Have you read the book?</p>
+              <input type="radio" id="readYes" name="readStatus" value="Yes">
+              <label for="readYes">Yes</label><br>
+              <input type="radio" id="readNo" name="readStatus" value="No">
+              <label for="readNo">No</label><br>
+          </form>
+
+          <button id="submitBtn">Submit</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </html>
