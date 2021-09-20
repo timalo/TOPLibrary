@@ -12,12 +12,16 @@ header {
     display: flex;
     flex-direction: row;
     border: 1px solid red;
-    /*Make this a flexbox and store books inside as flex items*/
+    /*Make this a flexbox and store book cards inside as flex items*/
 }
 
 #bookArea {
     width: 80%;
     float: left;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
 }
 
 
@@ -33,7 +37,7 @@ header {
 #newBookBtn {
     margin: 1vh;
     height: 11vh;
-    width: 5vw;
+    width: 11vh;
 }
 
 hr {
@@ -44,5 +48,16 @@ hr {
 }
 
 .book {
-
+    border-radius: 30px;
+    border-style: solid;
+    border-color: purple;
+    line-height: 30px;
+    font-size: 20px;
+    white-space: pre-wrap;
+    color: white;
+    background-color:rgb(35, 35, 55);
+    width: 280px;
+    height: 340px;
+    margin: 10px;
+    padding: 15px;
 }
