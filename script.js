@@ -43,7 +43,7 @@ function updateBookList() {
     myLibrary.forEach(element => {
         var newBookDiv = document.createElement('div');
         newBookDiv.className = 'book';
-        newBookDiv.id = `Book${element.bookId}`;
+        newBookDiv.id = element.bookId;
         if(element.isRead){
           newBookDiv.textContent = `Title: ${element.title}\nAuthor: ${element.author}\nPages: ${element.pages}\nRead status: Read`;
         }
@@ -54,7 +54,7 @@ function updateBookList() {
         deleteBtn.className = 'deleteBtn';
         deleteBtn.textContent = 'Delete';
         deleteBtn.onclick = function(e) {
-
+          deleteBook(e.target.parentNode.id);
         }
         newBookDiv.appendChild(deleteBtn);
         var readStatusBtn = document.createElement('button');
@@ -69,13 +69,18 @@ function updateBookList() {
 }
 
 function changeReadStatus(id) {
-  console.log(`Calling changeReadstatus with id ${id}`);
-  const found = myLibrary.find(element => element.bookId == id);
-  //CONTINUE HERE, REMOVE THE ARRAY INDEX OF FOUND ELEMENT
+  console.log(`Calling changeReadstatus with ${id}`);
+  let found = myLibrary.findIndex((element) => element.bookId == id);
+  console.log(found);
+  myLibrary[found].isRead = !myLibrary[found].isRead;
+  updateBookList();
 }
 
 function deleteBook(id) {
   console.log(`deleting book ${id}`);
+  let found = myLibrary.findIndex((element) => element.bookId == id);
+  myLibrary.splice(found, 1);
+  updateBookList();
 }
 
 //----------------------
