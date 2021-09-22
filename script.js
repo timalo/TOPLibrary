@@ -18,7 +18,7 @@ function handleForm() {
   let newAuthor = AuthorTextbox.value;
   let newPageNumber = pageNumber.value;
   let newReadStatus = false;
-  if (readStatusYes){
+  if (document.getElementById("readYes").checked){
     newReadStatus = true;
   }
   let newBookId = idCounter;
@@ -28,13 +28,14 @@ function handleForm() {
   console.log(`attempting to add book: ${newBook}`);
   myLibrary.push(newBook);
   modal.style.display = "none"; //close the prompt window
-  updateBookList();
-
+  
   TitleTextbox.value = "";
   AuthorTextbox.value = "";
   pageNumber.value = "";
-  readStatusNo = false;
-  readStatusYes = false;
+  document.getElementById("readYes").checked = false;
+  document.getElementById("readNo").checked = false;
+  
+  updateBookList();
 }
 
 function updateBookList() {
@@ -42,13 +43,39 @@ function updateBookList() {
     myLibrary.forEach(element => {
         var newBookDiv = document.createElement('div');
         newBookDiv.className = 'book';
-        newBookDiv.textContent = `Title: ${element.title}\nAuthor: ${element.author}\nPages: ${element.pages}\nRead status: ${element.isRead}`; 
+        newBookDiv.id = `Book${element.bookId}`;
+        if(element.isRead){
+          newBookDiv.textContent = `Title: ${element.title}\nAuthor: ${element.author}\nPages: ${element.pages}\nRead status: Read`;
+        }
+        else{
+          newBookDiv.textContent = `Title: ${element.title}\nAuthor: ${element.author}\nPages: ${element.pages}\nRead status: Not read`; 
+        }
         var deleteBtn = document.createElement('button');
         deleteBtn.className = 'deleteBtn';
         deleteBtn.textContent = 'Delete';
+        deleteBtn.onclick = function(e) {
+
+        }
         newBookDiv.appendChild(deleteBtn);
+        var readStatusBtn = document.createElement('button');
+        readStatusBtn.className = 'readBtn';
+        readStatusBtn.textContent = 'Change read status';
+        readStatusBtn.onclick = function(e) {
+          changeReadStatus(e.target.parentNode.id);
+        }
+        newBookDiv.appendChild(readStatusBtn);
         document.querySelector('#bookArea').appendChild(newBookDiv);
     })
+}
+
+function changeReadStatus(id) {
+  console.log(`Calling changeReadstatus with id ${id}`);
+  const found = myLibrary.find(element => element.bookId == id);
+  //CONTINUE HERE, REMOVE THE ARRAY INDEX OF FOUND ELEMENT
+}
+
+function deleteBook(id) {
+  console.log(`deleting book ${id}`);
 }
 
 //----------------------
@@ -85,7 +112,4 @@ let submitBookBtn = document.getElementById("submitBtn");
 let TitleTextbox = document.getElementById("title");
 let AuthorTextbox = document.getElementById("author");
 let pageNumber = document.getElementById("pages");
-let readStatusYes = document.getElementById("readYes");
-let readStatusNo = document.getElementById("readNo");
 
-//submitBookBtn.addEventListener("click", handleForm);
