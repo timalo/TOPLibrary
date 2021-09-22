@@ -21,21 +21,20 @@
         <!-- Modal content -->
         <div class="modal-content">
           <span class="close">&times;</span>
-          <form>
+          <form onsubmit="handleForm();return false">
               <label for="title">Book Title:</label><br>
-              <input type="text" id="title" name="title"><br>
+              <input type="text" id="title" name="title" required><br>
               <label for="author">Author:</label><br>
-              <input type="text" id="author" name="author"><br>
+              <input type="text" id="author" name="author" required><br>
               <label for="pages">Page number:</label><br>
-              <input type="number" id="pages" name="pages"><br>
+              <input type="number" id="pages" name="pages" required><br>
               <p>Have you read the book?</p>
-              <input type="radio" id="readYes" name="readStatus" value="Yes">
+              <input type="radio" id="readYes" name="readStatus" value="Yes" required>
               <label for="readYes">Yes</label><br>
               <input type="radio" id="readNo" name="readStatus" value="No">
               <label for="readNo">No</label><br>
+              <input type="submit" value="Submit" id="submitBtn">
           </form>
-
-          <button id="submitBtn">Submit</button>
         </div>
     </div>
     <script src="script.js"></script>

@@ -1,17 +1,4 @@
-let myLibrary = [{
-    title: "testBook",
-    author: "testAuthor",
-    pages: 666,
-    isRead: true,
-    bookId: 1
-},
-{
-    title: "test2Book",
-    author: "second Author",
-    pages: 50,
-    isRead: false,
-    bookId: 2
-}];
+let myLibrary = [];
 
 function Book(title, author, pages, isRead, bookId){
     this.title = title;
@@ -24,12 +11,30 @@ function Book(title, author, pages, isRead, bookId){
     }
 }
 
-function addBookToLibrary(book) {
-    
-}
+function handleForm() {
+  //This function reads the form and builds a Book object from the data
+  //Also adds the book into the myLibrary array in the end.
+  let newTitle = TitleTextbox.value;
+  let newAuthor = AuthorTextbox.value;
+  let newPageNumber = pageNumber.value;
+  let newReadStatus = false;
+  if (readStatusYes){
+    newReadStatus = true;
+  }
+  let newBookId = idCounter;
+  idCounter++;
 
-function NewBookPrompt() {
+  let newBook = new Book(newTitle, newAuthor, newPageNumber, newReadStatus, newBookId);
+  console.log(`attempting to add book: ${newBook}`);
+  myLibrary.push(newBook);
+  modal.style.display = "none"; //close the prompt window
+  updateBookList();
 
+  TitleTextbox.value = "";
+  AuthorTextbox.value = "";
+  pageNumber.value = "";
+  readStatusNo = false;
+  readStatusYes = false;
 }
 
 function updateBookList() {
@@ -73,3 +78,14 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+let idCounter = 1;
+
+let submitBookBtn = document.getElementById("submitBtn");
+let TitleTextbox = document.getElementById("title");
+let AuthorTextbox = document.getElementById("author");
+let pageNumber = document.getElementById("pages");
+let readStatusYes = document.getElementById("readYes");
+let readStatusNo = document.getElementById("readNo");
+
+//submitBookBtn.addEventListener("click", handleForm);
